@@ -1,4 +1,4 @@
-// server/index.cjs — Express + site build (CommonJS) para Render/produção
+// server/index.cjs — Express (CommonJS) servindo o build do Vite e a API
 
 const express = require('express');
 const cors = require('cors');
@@ -40,7 +40,7 @@ function saveDB(db) {
 
 // ===== Rotas API =====
 
-// Preço atual (mostra o “Gs” que vai para a próxima inscrição)
+// Preço atual
 app.get('/api/price', (_req, res) => {
   const db = loadDB();
   res.json({ current_price: db.price });
@@ -83,13 +83,13 @@ app.post('/api/register', (req, res) => {
   res.json({ ok: true, registration: registro });
 });
 
-// Lista pública de inscrições
+// Lista pública
 app.get('/api/registrations', (_req, res) => {
   const db = loadDB();
   res.json(db.registrations.sort((a, b) => a.id - b.id));
 });
 
-// Buscar inscrição por documento
+// Buscar por documento
 app.get('/api/registration', (req, res) => {
   const db = loadDB();
   const doc = String(req.query.documento || '');
@@ -98,7 +98,7 @@ app.get('/api/registration', (req, res) => {
   res.json(r);
 });
 
-// Atualizar dados de inscrição (por documento, sem senha)
+// Atualizar dados pelo documento (sem senha)
 app.put('/api/registration/update', (req, res) => {
   const db = loadDB();
   const p = req.body || {};
@@ -126,7 +126,7 @@ app.post('/api/admin/login', (req, res) => {
   return res.status(401).json({ error: 'unauthorized' });
 });
 
-// Marcar pagamento (requer header Authorization: Bearer ok)
+// Marcar pagamento (requer Authorization: Bearer ok)
 app.post('/api/registration/pay', (req, res) => {
   const auth = req.headers['authorization'] || '';
   const token = auth.replace(/^Bearer\s+/i, '');
@@ -142,7 +142,7 @@ app.post('/api/registration/pay', (req, res) => {
   res.json({ ok: true });
 });
 
-// Exportar XLSX (planilha)
+// Exportar XLSX
 app.get('/api/registrations.xlsx', (_req, res) => {
   const db = loadDB();
   const rows = db.registrations.map(r => ({
@@ -163,7 +163,7 @@ app.get('/api/registrations.xlsx', (_req, res) => {
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Inscritos');
   const buf = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
-  res.setHeader('Content-Disposition', 'attachment; filename="inscritos.xlsx"');
+  res.setHeader('Content-Disposition', 'attachment; filename=\"inscritos.xlsx\"");
   res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   res.send(buf);
 });
@@ -174,12 +174,12 @@ if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
 }
 
-// SPA fallback (qualquer rota não-API devolve index.html do build)
+// SPA fallback
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api')) return res.status(404).end();
   const indexFile = path.join(distPath, 'index.html');
   if (fs.existsSync(indexFile)) return res.sendFile(indexFile);
-  res.status(200).send('<h3>Servidor ativo. Rode o build com "npm run build".</h3>');
+  res.status(200).send('<h3>Servidor ativo. Rode o build com \"npm run build\".</h3>');
 });
 
 const PORT = process.env.PORT || 3001;
