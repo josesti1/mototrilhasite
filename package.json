@@ -2,12 +2,15 @@
   "name": "mototrilha-site",
   "version": "1.0.6",
   "private": true,
+  {
   "scripts": {
     "dev": "concurrently -k -n web,api -c cyan,magenta \"vite\" \"node server/index.cjs\"",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "npm install --no-save vite && npx vite build",
+    "start": "node server/index.cjs",
+    "preview": "npx vite preview",
     "api": "node server/index.cjs"
-  },
+  }
+}
   "dependencies": {
     "concurrently": "^8.2.2",
     "express": "^4.19.2",
