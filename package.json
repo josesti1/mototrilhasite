@@ -1,0 +1,32 @@
+{
+  "name": "mototrilha-site",
+  "version": "1.0.6",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -k -n web,api -c cyan,magenta \"vite\" \"node server/index.cjs\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "api": "node server/index.cjs"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "xlsx": "^0.18.5",
+    "qrcode": "^1.5.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "lucide-react": "^0.363.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "vite": "^5.4.10",
+    "@vitejs/plugin-react": "^4.3.1",
+    "tailwindcss": "^3.4.10",
+    "postcss": "^8.4.47",
+    "autoprefixer": "^10.4.20"
+  }
+}

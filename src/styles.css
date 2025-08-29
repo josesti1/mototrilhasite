@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* helpers */
+.container-6xl{ max-width: 1200px; margin: 0 auto; }

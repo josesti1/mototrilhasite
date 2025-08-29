@@ -1,0 +1,54 @@
+{
+  "registrations": [
+    {
+      "id": 1,
+      "nome": "jose fas",
+      "documento": "123321",
+      "telefone": "695825852656",
+      "cidade": "satasas",
+      "camiseta": "M",
+      "sangue": "ab",
+      "grupo": "sf",
+      "moto_modelo": "dc",
+      "prova": "8",
+      "preco": 250001,
+      "pago": true,
+      "criado_em": "2025-08-29T11:22:27.447Z"
+    },
+    {
+      "id": 2,
+      "nome": "jose fasas",
+      "documento": "21245454",
+      "telefone": "12212",
+      "cidade": "21212121",
+      "camiseta": "",
+      "sangue": "ab+",
+      "grupo": "21212",
+      "moto_modelo": "1221212",
+      "prova": "8",
+      "preco": 250002,
+      "pago": false,
+      "criado_em": "2025-08-29T11:41:30.282Z"
+    },
+    {
+      "id": 3,
+      "nome": "matteus faber ",
+      "documento": "88998899",
+      "telefone": "98721155",
+      "cidade": "moto trilua",
+      "camiseta": "GG",
+      "sangue": "ab+",
+      "grupo": "localhost:5173",
+      "moto_modelo": "CRF 450",
+      "prova": "8",
+      "preco": 250003,
+      "pago": true,
+      "criado_em": "2025-08-29T12:27:20.909Z"
+    }
+  ],
+  "price": 250004,
+  "admin": {
+    "user": "josesti1",
+    "pass": "@Trator2020"
+  }
+}
